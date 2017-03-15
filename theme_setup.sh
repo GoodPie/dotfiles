@@ -68,7 +68,7 @@ function load() {
     
 }
 
-# Load the i3 config
+# Ask the user to load or save
 while true; do
     read -p "Do you want to save or load? " yn
     case $yn in
