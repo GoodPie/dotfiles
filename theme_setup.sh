@@ -1,5 +1,5 @@
 # System settings
-install_cmd="sudo pacman -S"
+install_cmd="sudo apt install"
 configs="$HOME/.config"
 
 # Vars
@@ -30,7 +30,7 @@ function load() {
         read -p "Would you like to install i3, rofi, thunar and compton? " yn
         case $yn in
             [Yy]* ) $install_cmd $installs; break;;
-            [Nn]* ) exit;;
+            [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
     done
@@ -39,8 +39,8 @@ function load() {
     while true; do
         read -p "Do you want to use the i3 config? " yn
         case $yn in
-            [Yy]* ) cp -r $save_dir/i3 $config_dir/; break;;
-            [Nn]* ) exit;;
+            [Yy]* ) cp -r $save_dir/i3 $configs/; break;;
+            [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
     done
@@ -49,8 +49,8 @@ function load() {
     while true; do
         read -p "Do you want to use the polybar config? " yn
         case $yn in
-            [Yy]* ) cp -r $save_dir/polybar $config_dir/; break;;
-            [Nn]* ) exit;;
+            [Yy]* ) cp -r $save_dir/polybar $configs/; break;;
+            [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
     done
@@ -60,7 +60,7 @@ function load() {
         read -p "Do you want to use the wallpaper? " yn
         case $yn in
             [Yy]* ) cp -r $save_dir/$wallpaper $wallpaper_dir/$wallpaper; break;;
-            [Nn]* ) exit;;
+            [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
     done
