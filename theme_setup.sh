@@ -25,6 +25,16 @@ function save() {
 
 function load() {
 
+    # Install dependencies
+    while true; do
+        read -p "Would you like to install i3, rofi, thunar and compton? " yn
+        case $yn in
+            [Yy]* ) $install_cmd $installs; break;;
+            [Nn]* ) exit;;
+            * ) echo "Enter [Y/N]";;
+        esac
+    done
+
     # Load the i3 config
     while true; do
         read -p "Do you want to use the i3 config? " yn
@@ -54,6 +64,8 @@ function load() {
             * ) echo "Enter [Y/N]";;
         esac
     done
+
+    
 }
 
 # Load the i3 config
