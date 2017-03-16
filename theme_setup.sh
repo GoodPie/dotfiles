@@ -1,25 +1,40 @@
-# System settings
-install_cmd="sudo apt install"
-configs="$HOME/.config"
+#!/bin/bash
 
-# Vars
-installs="i3 compton rofi thunar"
-wallpaper_dir="$HOME"
-wallpaper=".wallpaper.png"
-save_dir="current_rice"
+# Requirements for the current config
+INSTALL_CMD="sudo apt install"
+REQUIRED="i3 compton rofi thunar scrot feh"
+
+# Directory setups
+CONFIG_DIR="$HOME/.config"
+WALLPAPER_DIR="$HOME"
+SAVE_DIR="dots"
+
+WM_DIR="$CONFIG_DIR/i3"
+POLYBAR_DIR="$CONFIG_DIR/polybar"
+TERMINATOR_DIR="$CONFIG_DIR/terminator"
+
+# File names
+WALLPAPER=".wallpaper.png"
 
 function save() {
 
-    mkdir $save_dir
+    mkdir $SAVE_DIR
 
     # Copy polybar
-    cp -r $configs/polybar $save_dir
+    cp -r $POLYBAR_DIR $SAVE_DIR
+    echo "Copied polybar config from $POLYBAR_DIR to $SAVE_DIR "
     
     # Copy i3
-    cp -r $configs/i3 $save_dir
+    cp -r $WM_DIR $SAVE_DIR
+    echo "Copied i3 config from $WM_DIR to $SAVE_DIR "
+
+    # Copy Terminator
+    cp -r $TERMINATOR_DIR $SAVE_DIR
+    echo "Copied terminator config $TERMINATOR_DIR to $SAVE_DIR "
 
     # Copy wallpaper
-    cp $wallpaper_dir/$wallpaper $save_dir
+    cp $WALLPAPER_DIR/$WALLPAPER $SAVE_DIR
+    echo "Copied wallpaper from $WALLPAPER_DIR/$WALLPAPER to $SAVE_DIR"
 
 }
 
@@ -27,9 +42,9 @@ function load() {
 
     # Install dependencies
     while true; do
-        read -p "Would you like to install i3, rofi, thunar and compton? " yn
+        read -p "Would you like to install i3, rofi, scrot, feh, thunar and compton? [Y/N] " yn
         case $yn in
-            [Yy]* ) $install_cmd $installs; break;;
+            [Yy]* ) $INSTALL_CMD $REQUIRED; echo "Done "; break;;
             [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
@@ -37,9 +52,9 @@ function load() {
 
     # Load the i3 config
     while true; do
-        read -p "Do you want to use the i3 config? " yn
+        read -p "Do you want to use the i3 config? [Y/N]" yn
         case $yn in
-            [Yy]* ) cp -r $save_dir/i3 $configs/; break;;
+            [Yy]* ) cp -r $WM_DIR $CONFIG_DIR/; echo "Done "; break;;
             [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
@@ -47,9 +62,9 @@ function load() {
 
     # Load the polybar config
     while true; do
-        read -p "Do you want to use the polybar config? " yn
+        read -p "Do you want to use the polybar config? [Y/N] " yn
         case $yn in
-            [Yy]* ) cp -r $save_dir/polybar $configs/; break;;
+            [Yy]* ) cp -r $POLYBAR_DIR $CONFIG_DIR/; echo "Done "; break;;
             [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
@@ -57,9 +72,9 @@ function load() {
 
     # Load the wallpaper
     while true; do
-        read -p "Do you want to use the wallpaper? " yn
+        read -p "Do you want to use the wallpaper? [Y/N] " yn
         case $yn in
-            [Yy]* ) cp -r $save_dir/$wallpaper $wallpaper_dir/$wallpaper; break;;
+            [Yy]* ) cp -r $SAVE_DIR/$WALLPAPER $WALLPAPER_DIR/$WALLPAPER; echo "Done "; break;;
             [Nn]* ) break;;
             * ) echo "Enter [Y/N]";;
         esac
@@ -70,7 +85,7 @@ function load() {
 
 # Ask the user to load or save
 while true; do
-    read -p "Do you want to save or load? " yn
+    read -p "Do you want to save or load? [L/S]" yn
     case $yn in
         [Ss]* ) save; break;;
         [Ll]* ) load; break;;
