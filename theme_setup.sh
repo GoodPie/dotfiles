@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Saves and loads configs
 
 # Requirements for the current config
 INSTALL_CMD="sudo apt install"
