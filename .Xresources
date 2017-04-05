@@ -1,0 +1,9 @@
+------------------------------------------------------------------------------
+! u r x v t
+  
+URxvt.font: xft:monaco:size=10
+URxvt*urlLauncher:         vivaldi  
+URxvt.letterSpace: -5
+URxvt*scrollBar:        false
+URxvt*scrollBar_right:        true
+URxvt*scrollColor:        #000000
