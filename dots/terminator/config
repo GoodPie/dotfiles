@@ -1,0 +1,36 @@
+[global_config]
+  tab_position = bottom
+  title_font = Monospace 11
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#d2bc8a"
+  title_inactive_fg_color = "#dadde3"
+  title_transmit_bg_color = "#060709"
+  title_transmit_fg_color = "#dadde3"
+  title_use_system_font = False
+[keybindings]
+  page_down_half = <Shift><Alt>Down
+  page_up_half = <Shift><Alt>Up
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    audible_bell = True
+    background_color = "#473f7c"
+    background_darkness = 0.92
+    background_image = None
+    cursor_color = "#dadde3"
+    cursor_shape = ibeam
+    font = Monospace 10
+    foreground_color = "#dadde3"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

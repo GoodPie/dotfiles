@@ -1,0 +1,165 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[variables]
+padding = 5
+
+[colors]
+foreground = ${xrdb:color7}
+background = ${xrdb:color2}
+background-02 = ${xrdb:color6}
+background-03 = ${xrdb:color11}
+
+[global/wm]
+margin-top = 5
+margin-bottom = 0
+
+[bar/main]
+monitor = eDP-1
+width = 100%
+height = 26
+offset-x = 0
+offset-y = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+overline-size = 0
+underline-size = 0
+
+border-bottom = 0
+border-bottom-color = ${colors.background}
+
+spacing = 0
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Roboto:pixelsize=12;1
+font-1 = FontAwesome:pixelsize=12;1
+
+modules-left = i3
+modules-center = time
+modules-right = memory wifi battery
+
+tray-position = right
+tray-padding = 0
+tray-transparent = true
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/i3]
+type = internal/i3
+
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+
+label-mode-padding = 1
+label-mode-background = #e60053
+
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background-02}
+label-focused-padding = ${variables.padding}
+
+label-unfocused = %index%
+label-unfocused-padding = ${variables.padding}
+label-unfocused-background = ${colors.background}
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-padding = ${variables.padding}
+
+[module/volume]
+interval = 0.5
+type = internal/volume
+
+click-left = urxvt -name float -e ncmpcpp &
+click-right = pavucontrol &
+
+format-volume-padding = 5
+format-volume-margin = 0
+format-volume-background = ${colors.foreground}
+
+scroll-up = pactl set-sink-volume 1 +1%
+scroll-down = pactl set-sink-volume 1 -1%
+
+bar-volume-width = 30
+
+bar-volume-empty = -
+bar-volume-fill = -
+bar-volume-indicator = |
+
+label-volume = "VOL: %percentage%"
+format-volume = <label-volume> <bar-volume>
+
+[module/memory]
+type = internal/memory
+interval = 2
+label =  %percentage_used%%
+
+format-background = ${colors.background}
+format-padding = ${variables.padding}
+
+[module/time]
+type = internal/date
+date =  %H:%M
+interval = 5
+
+format-background = ${colors.background}
+format-padding = ${variables.padding}
+format-margin = 0
+
+[module/wifi]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+;udspeed-minwidth = 0
+
+format-disconnected-padding = ${variables.padding}
+
+format-connected-padding = ${variables.padding}
+
+format-connected = <label-connected>
+label-connected =  %downspeed%  %upspeed%
+label-disconnected =  No Connection
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+
+format-charging-padding = ${variables.padding}
+format-charging-background = ${colors.background}
+
+format-discharging-padding = ${variables.padding}
+format-discharging-background = ${colors.background}
+
+format-full-padding = ${variables.padding}
+format-full-background = ${colors.background}
+
+bar-capacity-format = %fill%%indicator%%empty%
+bar-capacity-foreground = #FFF
+bar-capacity-width = 10
+
+; Use + or - to indicate charging / discharging
+label-charging = " %percentage%% "
+label-discharging = " %percentage%% "
+label-full = "  %percentage%% "
+
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
+
